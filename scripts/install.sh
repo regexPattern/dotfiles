@@ -70,6 +70,7 @@ packages=(
 	virt-manager
 	vlc
 	wmctrl
+	wob
 	xdg-user-dirs
 	xdotool
 	zip
@@ -97,7 +98,8 @@ logiops() {
 	sudo systemctl enable logid --now
 }
 
-spotify-tui() {
+spotifyd() {
+	systemctl --user enable --now spotifyd.service
 }
 
 virtmanager() {
