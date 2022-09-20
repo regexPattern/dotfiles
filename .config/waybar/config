@@ -5,7 +5,7 @@
     "height": 36,
     "modules-left": ["custom/launcher", "custom/media"],
     "modules-center": ["wlr/workspaces"],
-    "modules-right": ["backlight", "pulseaudio", "battery"],
+    "modules-right": ["backlight", "pulseaudio", "clock", "battery"],
 	"custom/launcher":{
 		"format": " ",
 		"on-click": "rofi -show drun",
@@ -40,7 +40,7 @@
 		"exec": "python3 /home/carlosecp/.config/waybar/mediaplayer.py 2> /dev/null",
 	},
     "clock": {
-		"format": "{:%a %d %H:%M}"
+		"format": " {:%a %d %H:%M}"
     },
     "tray": {
         "spacing": 10
