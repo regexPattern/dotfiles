@@ -1,0 +1,8 @@
+/* vim: ft=css */
+
+configuration {
+	show-icons: true;
+	terminal: "kitty";
+}
+
+@theme "/home/carlosecp/.config/rofi/themes/spotlight-dark.rasi"

@@ -1,0 +1,86 @@
+// vim: ft=jsonc
+{
+    "layer": "top",
+    "position": "top",
+    "height": 36,
+    "modules-left": ["custom/launcher", "custom/media"],
+    "modules-center": ["wlr/workspaces"],
+    "modules-right": ["backlight", "pulseaudio", "battery"],
+	"custom/launcher":{
+		"format": " ",
+		"on-click": "rofi -show drun",
+		"on-click-right": "killall rofi"
+	},
+	"wlr/workspaces": {
+		"format": "{name}",
+		"on-click": "activate",
+		"format-icons": {
+			"1": "💻",
+			"2": "🌐",
+		}
+	},
+	"custom/mpd": {
+		"format": "♪ {}",
+		"interval": 10, 
+		"exec": "mpc current", 
+		"exec-if": "pgrep mpd",
+		"on-click": "mpc toggle",
+		"on-click-right": "sonata"
+	},
+	"custom/media": {
+		"format": "{icon} {}",
+		"escape": true,
+		"return-type": "json",
+		"max-length": 40,
+		"on-click": "playerctl play-pause",
+		"on-click-right": "playerctl stop",
+		"smooth-scrolling-threshold": 10,
+		"on-scroll-up": "playerctl next",
+		"on-scroll-down": "playerctl previous",
+		"exec": "python3 /home/carlosecp/.config/waybar/mediaplayer.py 2> /dev/null",
+	},
+    "clock": {
+		"format": "{:%a %d %H:%M}"
+    },
+    "tray": {
+        "spacing": 10
+    },
+	"hyprland/language": {
+		"format": "Lang: {}",
+		"format-us": "AMERICA, HELL YEAH!",
+		"format-tr": "As bayrakları",
+		"keyboard-name": "AT Translated Set 2 keyboard"
+	},
+	"pulseaudio": {
+		"format": "{icon} {volume}%",
+		"format-bluetooth": "{volume}% {icon}",
+		"format-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", ""]
+		},
+		"scroll-step": 5,
+	},
+    "backlight": {
+        "device": "intel_backlight",
+        "format": "{icon} {percent}%",
+        "format-icons": [""],
+		// "on-scroll-up": "brightnessctl set 5%+",
+		// "on-scroll-down": "brightnessctl set 5%-"
+    },
+    "battery": {
+        "states": {
+            "good": 95,
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""]
+    },
+}
+

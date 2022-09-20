@@ -1,0 +1,37 @@
+set ratios 1:2:3
+# vim: ft=config ts=4 sw=4
+
+set shell sh
+set shellopts "-eu"
+set ifs "\n"
+
+set scrolloff 5
+set hidden true
+set ignorecase true
+
+map <enter> shell
+
+cmd open ${{
+	xdg-open $f
+}}
+
+cmd rename %[ -e $1 ] && printf "file exists" || mv $f $1
+map R push :rename<space>
+
+cmd dragon ${{
+	dragon-drop --all --print-path $fx
+}}
+
+cmd dragon-all ${{
+	dragon-drop --all --print-path $fx
+}}
+
+cmd exit ${{
+	lf -remote 'send quit'
+	pwd
+}}
+
+map q exit
+
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/clean

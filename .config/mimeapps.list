@@ -1,0 +1,9 @@
+[Default Applications]
+application/json=nvim.desktop;brave-browser.desktop;
+application/pdf=sioyek.desktop;brave-browser.desktop;
+image/jpeg=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+image/jpg=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+image/png=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+image/webp=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+image/x-webp=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+inode/directory=pcmanfm.desktop;
