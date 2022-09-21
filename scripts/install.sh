@@ -30,6 +30,7 @@ packages=(
 	fish
 	fzf
 	gimp
+	git-delta
 	github-cli
 	glow
 	go
@@ -42,8 +43,10 @@ packages=(
 	libinput-gestures
 	logiops
 	lxappearance
+	maim
 	man-db
 	man-pages
+	neofetch
 	nodejs
 	noto-fonts
 	noto-fonts-emoji
@@ -71,8 +74,11 @@ packages=(
 	vlc
 	wmctrl
 	wob
+	xclip-git
+	xcolor
 	xdg-user-dirs
 	xdotool
+	xinit
 	zip
 	zoxide
 )
@@ -90,8 +96,7 @@ docker() {
 }
 
 libinput-gestures() {
-	sudo gpasswd -a $USER input
-	libinput-gestures-setup stop desktop autostart start
+	sudo usermod -aG input $USER
 }
 
 logiops() {

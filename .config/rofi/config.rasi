@@ -1,4 +1,4 @@
-/* vim: ft=css */
+// vim: ft=css
 
 configuration {
 	show-icons: true;

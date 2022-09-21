@@ -1,9 +1,27 @@
+[add.interactive]
+	useBuiltin = false
+
 [init]
 	defaultBranch = main
+
+[interactive]
+	diffFilter = delta --color-only
+
+[log]
+	date = local
+
+[merge]
+	conflictstyle = diff3
+
+[pull]
+	rebase = interactive
+
 [user]
 	email = 47466248+carlosecp@users.noreply.github.com
 	name = Carlos Castillo
-[log]
-	date = local
-[format]
-	pretty = format:%C(auto,yellow)%h%C(auto,magenta) %C(auto,blue)%>(24,trunc)%ad %C(auto,yellow)%an %Creset%s%C(auto,red)% gD% D
+
+# delta-git
+[delta]
+	light = false
+	navigate = true 
+	side-by-side = true
