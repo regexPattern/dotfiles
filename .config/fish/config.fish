@@ -43,7 +43,8 @@ alias clippy="cargo clippy -- \
 -W clippy::expect_used"
 
 # FZF config
-set FZF_DEFAULT_COMMAND "rg --files"
+set -g FZF_DEFAULT_COMMAND "fd --type f --strip-cwd-prefix --hidden --follow --exclude .git"
+set -g FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 # Themes: https://github.com/junegunn/fzf/wiki/Color-schemes
 # https://github.com/catppuccin/fzf/blob/main/mocha.md
 set -Ux FZF_DEFAULT_OPTS "\
