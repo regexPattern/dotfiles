@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/sh
 
 WOBSOCK=$XDG_RUNTIME_DIR/wob.sock
 WOB="wob                         \
@@ -15,7 +15,8 @@ init () {
 }
 
 brightness () {
-	brightnessctl set $1 -m | cut -f4 -d, | sed s/%// > $WOBSOCK
+	brightnessctl set $1 -m
+	# brightnessctl set $1 -m | cut -f4 -d, | sed s/%// > $WOBSOCK
 }
 
 brightness_increase () {
@@ -32,7 +33,7 @@ volume () {
 	if $(pamixer --get-mute); then
 		vol=0
 	fi
-	echo $vol > $WOBSOCK
+	# echo $vol > $WOBSOCK
 }
 
 volume_increase () {

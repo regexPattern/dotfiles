@@ -33,5 +33,5 @@ cmd exit ${{
 
 map q exit
 
-set previewer ~/.config/lf/preview
-set cleaner ~/.config/lf/clean
+set previewer $HOME/.config/lf/preview
+set cleaner $HOME/.config/lf/clean

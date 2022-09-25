@@ -1,6 +1,6 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/sh
 
-cd ~
+cd $HOME
 
 export XCURSOR_SIZE=24
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/sh
 
 if ! command -v paru > /dev/null; then
 	sudo pacman -S git rustup --needed --noconfirm
@@ -60,12 +60,12 @@ packages=(
 	playerctl
 	polkit
 	python-pip
+	python-pulsectl
 	qemu-desktop
 	ripgrep
 	solaar
+	spicetify-cli
 	spotify
-	spotify-tui
-	spotifyd
 	stow
 	ttf-jetbrains-mono
 	ttf-nerd-fonts-symbols-1000-em
@@ -83,31 +83,40 @@ packages=(
 	zoxide
 )
 
-$INSTALL_CMD ${packages[@]}
+# $INSTALL_CMD ${packages[@]}
 
-bat() {
+setup_bat () {
 	bat cache --build
 }
 
-docker() {
+setup_docker () {
 	sudo groupadd docker
 	sudo usermod -aG docker $USER
 	sudo systemctl enable --now docker.service containerd.service
 }
 
-libinput-gestures() {
+setup_libinput_gestures () {
 	sudo usermod -aG input $USER
 }
 
-logiops() {
+setup_logiops () {
 	sudo systemctl enable logid --now
 }
 
-spotifyd() {
-	systemctl --user enable --now spotifyd.service
+setup_spicetify () {
+	sudo chmod a+wr /opt/spotify
+	sudo chmod a+wr /opt/spotify/Apps -R
+
+	spicetify config current_theme catppuccin-mocha
+	spicetify config color_scheme lavender
+	spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
+	spicetify config extensions catppuccin-mocha.js
+
+	spicetify apply
+	spicetify update
 }
 
-virtmanager() {
+setup_virtmanager () {
 	sudo groupadd libvirt
 	sudo usermod -aG libvirt $USER
 	sudo systemctl enable libvirtd --now

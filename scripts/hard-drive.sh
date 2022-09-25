@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/sh
 
 # This script sets my fstab file so my secondary hard drive `DRIVE` gets
 # mounted on startup so my secondary hard drive `/dev/sda1` gets mounted on

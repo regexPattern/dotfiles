@@ -1,6 +1,10 @@
 [add.interactive]
 	useBuiltin = false
 
+[core]
+	editor = nvim
+	pager = delta
+
 [init]
 	defaultBranch = main
 

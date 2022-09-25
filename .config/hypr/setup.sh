@@ -1,4 +1,4 @@
-#!/usr/bin/env -S bash
+#!/usr/bin/sh
 
 if ! command -v paru > /dev/null; then
 	sudo pacman -S git rustup --needed --noconfirm
