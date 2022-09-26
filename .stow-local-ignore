@@ -1,6 +1,6 @@
 \.git
 \.gitignore
-Dockerfile
+Dockerfiles
 LICENSE
 README.md
 scripts
