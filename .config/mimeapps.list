@@ -1,9 +1,14 @@
 [Default Applications]
-application/json=nvim.desktop;brave-browser.desktop;
-application/pdf=sioyek.desktop;brave-browser.desktop;
-image/jpeg=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
-image/jpg=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
-image/png=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
-image/webp=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
-image/x-webp=nsxiv.desktop;gimp.desktop;brave-browser.desktop;
+application/json=nvim.desktop;com.brave.Browser.desktop;
+application/pdf=sioyek.desktop;com.brave.Browser.desktop;
+image/jpeg=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/jpg=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/png=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/webp=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/x-webp=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
 inode/directory=pcmanfm.desktop;
+text/html=com.brave.Browser.desktop
+x-scheme-handler/http=com.brave.Browser.desktop
+x-scheme-handler/https=com.brave.Browser.desktop
+x-scheme-handler/about=com.brave.Browser.desktop
+x-scheme-handler/unknown=com.brave.Browser.desktop

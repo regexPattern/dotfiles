@@ -1,5 +1,7 @@
 # vim: ft=sh
 
+source /etc/X11/xinit/xinitrc-common
+
 session=${1:-awesome}
 
 twm () {

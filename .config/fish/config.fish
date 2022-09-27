@@ -1,13 +1,13 @@
 set fish_greeting
 set SELF %self
+set -g fish_history ""
 
 set -gx TERM "xterm-kitty"
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 set -gx FCEDIT "nvim"
-set -gx BROWSER "brave"
 
-set -gx DEBUGINFOD_URLS "https://debuginfod.archlinux.org"
+set -gx PF_INFO "ascii title os host kernel uptime memory"
 
 set -gx CARGO_HOME "$HOME/.cargo"
 set -gx GOPATH     "$HOME/go"

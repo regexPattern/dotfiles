@@ -4,6 +4,8 @@ INSTALL_CMD="sudo pacman -S --needed --noconfirm"
 
 PKGS=(flatpak)
 
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
 $INSTALL_CMD ${PKGS[@]}
 
 flatpak install -y flathub com.brave.Browser
