@@ -2,7 +2,6 @@ env:
   TERM: xterm-256color
   WINIT_X11_SCALE_FACTOR: "1"
 
-# window
 window:
   padding:
     x: 16
@@ -11,8 +10,6 @@ window:
   opacity: 1
   dynamic_title: true
 
-# FIX: For some reason fonts are not rendering correctly.
-# font
 font:
   normal:
     family: JetBrainsMono Nerd Font
@@ -24,35 +21,6 @@ font:
     x: 0
     y: 2
 
-# cursor 
 cursor:
   style:
     shape: Block
-colors:
-  # Default colors
-  primary:
-    background: '#2E3440'
-    foreground: '#D8DEE9'
-
-  # Normal colors
-  normal:
-    black: '#3B4252'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#88C0D0'
-    white: '#E5E9F0'
-
-  # Bright colors
-  bright:
-    black: '#4C566A'
-    red: '#BF616A'
-    green: '#A3BE8C'
-    yellow: '#EBCB8B'
-    blue: '#81A1C1'
-    magenta: '#B48EAD'
-    cyan: '#8FBCBB'
-    white: '#ECEFF4'
-theme: Nord

@@ -2,42 +2,43 @@ set fish_greeting
 set SELF %self
 # set -g fish_history ""
 
+# default applications
 set -gx TERM "xterm-kitty"
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 set -gx FCEDIT "nvim"
 
-set -gx BAT_THEME "Monokai Extended"
-set -gx PF_INFO "ascii title os host kernel uptime memory"
-set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/.ripgreprc"
-
-set -gx CARGO_HOME "$HOME/.cargo"
-set -gx GOPATH     "$HOME/go"
-
+# path
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$HOME/bin"
 fish_add_path "$HOME/.local/bin"
-fish_add_path "$HOME/.spicetify"
 
+# programming paths
+set -gx CARGO_HOME "$HOME/.cargo"
+set -gx GOPATH     "$HOME/go"
+
+# alias
 alias ..="cd .."
-alias ls="exa -a --group-directories-first"
-alias ll="exa -la --group-directories-first"
 alias cat="bat"
+alias ll="exa -la --group-directories-first"
+alias ls="exa -a --group-directories-first"
+alias vim="nvim"
 alias clippy="cargo clippy --          \
 				-W clippy::pedantic    \
 				-W clippy::nursery     \
 				-W clippy::unwrap_used \
 				-W clippy::expect_used"
 
-# Themes: https://github.com/junegunn/fzf/wiki/Color-schemes
-# https://github.com/catppuccin/fzf/blob/main/mocha.md
+# applications configurations
+set -gx BAT_THEME "Monokai Extended"
 set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden"
-# set -gx FZF_DEFAULT_OPTS "                                         \
-# 	--color=bg+:#313244,bg:#1e1e2e,spinner:#f5e0dc,hl:#f38ba8      \
-# 	--color=fg:#cdd6f4,header:#f38ba8,info:#cba6f7,pointer:#f5e0dc \
-# 	--color=marker:#f5e0dc,fg+:#cdd6f4,prompt:#cba6f7,hl+:#f38ba8"
+set -gx FZF_DEFAULT_OPTS "--color=dark" # https://github.com/junegunn/fzf/wiki/Color-schemes
+set -gx PF_INFO "ascii title os host kernel uptime memory"
+set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/.ripgreprc"
 
+# custom keybindings
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
+# init zoxide
 zoxide init fish | source

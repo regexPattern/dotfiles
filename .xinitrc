@@ -4,7 +4,7 @@ source /etc/X11/xinit/xinitrc-common
 
 session=${1:-awesome}
 
-twm () {
+start_twm () {
 	xset -dpms
 	xset s off
 
@@ -21,7 +21,7 @@ twm () {
 
 case $session in
 	awesome)
-		twm
+		start_twm
 		exec awesome
 		;;
 	plasma)
@@ -29,7 +29,7 @@ case $session in
 		exec startplasma-x11
 		;;
 	i3)
-		twm
+		start_twm
 		i3
 		;;
 esac
