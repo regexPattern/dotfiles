@@ -1,12 +1,6 @@
 [Default Applications]
 application/json=nvim.desktop;com.brave.Browser.desktop;
-application/pdf=sioyek.desktop;com.brave.Browser.desktop;
-image/jpeg=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
-image/jpg=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
-image/png=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
-image/webp=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
-image/x-webp=nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
-inode/directory=pcmanfm.desktop;
+application/pdf=com.brave.Browser.desktop;
 text/html=com.brave.Browser.desktop
 x-scheme-handler/http=com.brave.Browser.desktop
 x-scheme-handler/https=com.brave.Browser.desktop
@@ -14,5 +8,7 @@ x-scheme-handler/about=com.brave.Browser.desktop
 x-scheme-handler/unknown=com.brave.Browser.desktop
 
 [Added Associations]
-image/webp=org.gnome.eog.desktop;
-image/jpeg=org.gnome.eog.desktop;
+image/webp=org.gnome.eog;nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/jpeg=org.gnome.eog;nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/jpg=org.gnome.eog;nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
+image/png=org.gnome.eog;nsxiv.desktop;gimp.desktop;com.brave.Browser.desktop;
