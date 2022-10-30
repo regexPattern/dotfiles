@@ -3,7 +3,6 @@ set SELF %self
 # set -g fish_history ""
 
 # default applications
-set -gx TERM "xterm-kitty"
 set -gx EDITOR "nvim"
 set -gx VISUAL "nvim"
 set -gx FCEDIT "nvim"
@@ -22,7 +21,6 @@ alias ..="cd .."
 alias cat="bat"
 alias ll="exa -la --group-directories-first"
 alias ls="exa -a --group-directories-first"
-alias vim="nvim"
 alias clippy="cargo clippy --          \
 				-W clippy::pedantic    \
 				-W clippy::nursery     \
@@ -30,7 +28,7 @@ alias clippy="cargo clippy --          \
 				-W clippy::expect_used"
 
 # applications configurations
-set -gx BAT_THEME "Monokai Extended"
+set -gx BAT_THEME "base16"
 set -gx FZF_DEFAULT_COMMAND "fd --type f --hidden"
 set -gx FZF_DEFAULT_OPTS "--color=dark" # https://github.com/junegunn/fzf/wiki/Color-schemes
 set -gx PF_INFO "ascii title os host kernel uptime memory"
