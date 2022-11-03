@@ -38,5 +38,9 @@ set -gx RIPGREP_CONFIG_PATH "$HOME/.config/ripgrep/.ripgreprc"
 bind ! __history_previous_command
 bind '$' __history_previous_command_arguments
 
+function server --description "Start a server for static files"
+	python3 -m http.server
+end
+
 # init zoxide
 zoxide init fish | source

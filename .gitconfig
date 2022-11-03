@@ -3,13 +3,13 @@
 
 [core]
 	editor = nvim
-	pager = delta
+	; pager = delta
 
 [init]
 	defaultBranch = main
 
 [interactive]
-	diffFilter = delta --color-only
+	; diffFilter = delta --color-only
 
 [log]
 	date = local
@@ -21,7 +21,7 @@
 	rebase = interactive
 
 [user]
-	email = 47466248+carlosecp@users.noreply.github.com
+	email = 47466248+regexPattern@users.noreply.github.com
 	name = Carlos Castillo
 
 # delta-git
