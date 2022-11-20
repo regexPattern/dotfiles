@@ -1,5 +1,8 @@
 /* See LICENSE file for copyright and license details. */
 
+// patches:
+// - https://dwm.suckless.org/patches/autostart/
+
 #include <X11/XF86keysym.h>
 
 /* appearance */
@@ -107,12 +110,14 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 
-	{ 0, XF86XK_AudioRaiseVolume, spawn, {.v = raisevolcmd } },
-	{ 0, XF86XK_AudioLowerVolume, spawn, {.v = lowervolcmd } },
-	{ 0, XF86XK_AudioMute,        spawn, {.v = mutevolcmd  } },
+	{ 0, XF86XK_AudioRaiseVolume,  spawn, {.v = raisevolcmd } },
+	{ 0, XF86XK_AudioLowerVolume,  spawn, {.v = lowervolcmd } },
+	{ 0, XF86XK_AudioMute,         spawn, {.v = mutevolcmd  } },
 
 	{ 0, XF86XK_MonBrightnessUp,   spawn, {.v = raisebrightnesscmd } },
 	{ 0, XF86XK_MonBrightnessDown, spawn, {.v = lowerbrightnesscmd } },
+
+	{ MODKEY|ShiftMask, XK_b, spawn, SHCMD("firefox") },
 };
 
 /* button definitions */
