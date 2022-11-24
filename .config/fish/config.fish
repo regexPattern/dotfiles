@@ -11,6 +11,7 @@ set -gx FCEDIT "nvim"
 fish_add_path "$HOME/.cargo/bin"
 fish_add_path "$HOME/bin"
 fish_add_path "$HOME/.local/bin"
+fish_add_path "$HOME/.anaconda3/bin"
 
 # programming paths
 set -gx CARGO_HOME "$HOME/.cargo"
@@ -44,3 +45,6 @@ end
 
 # init zoxide
 zoxide init fish | source
+
+# conda initialize
+# eval conda "shell.fish" "hook" $argv | source
