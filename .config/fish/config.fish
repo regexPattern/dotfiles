@@ -6,7 +6,7 @@ set -gx GIT_EDITOR $EDITOR
 set -gx VISUAL $EDITOR
 
 set -gx BAT_STYLE "plain"
-set -gx BAT_THEME "base16"
+set -gx BAT_THEME "ansi"
 
 set -gx FZF_DEFAULT_OPTS "--color=dark"
 set -gx FZF_DEFAULT_COMMAND "fd --type file --hidden"

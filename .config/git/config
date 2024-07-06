@@ -2,8 +2,9 @@
 	defaultBranch = main
 
 [alias]
-	log-tree = log --oneline --graph
-	ls = show --pretty="" --name-only HEAD
+	pretty-log = log --oneline --graph
+	show-dead-remote-branches = remote prune origin --dry-run
+	show-head-changes = show --pretty='' --name-only HEAD
 
 [user]
 	name = Carlos Castillo
