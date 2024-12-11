@@ -1,0 +1,17 @@
+[alias]
+	pretty-log = log --oneline --graph
+	show-dead-remote-branches = remote prune origin --dry-run
+	show-head-staged = show --pretty='' --name-only HEAD
+
+[init]
+	defaultBranch = main
+
+[user]
+	name = Carlos Castillo
+	email = 47466248+regexPattern@users.noreply.github.com
+
+[merge]
+    conflictstyle = diff3
+
+[diff]
+    colorMoved = default
