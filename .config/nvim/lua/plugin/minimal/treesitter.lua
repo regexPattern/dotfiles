@@ -4,6 +4,9 @@ return {
     build = ":TSUpdate",
     event = "BufReadPost",
     main = "nvim-treesitter.configs",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter-refactor",
+    },
     opts = {
       auto_install = true,
       highlight = {
@@ -21,8 +24,27 @@ return {
           node_decremental = ",",
         },
       },
+      refactor = {
+        highlight_definitions = {
+          enable = true,
+          clear_on_cursor_move = true,
+        },
+        navigation = {
+          enable = true,
+          keymaps = {
+            goto_definition_lsp_fallback = "gd",
+          },
+        },
+        smart_rename = {
+          enable = true,
+          keymaps = {
+            smart_rename = "<Leader>trn",
+          },
+        },
+      },
     },
-    init = function()
+    config = function(plugin, opts)
+      require(plugin.main).setup(opts)
       vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
     end,
   },

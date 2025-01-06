@@ -1,7 +1,5 @@
 vim.g.mapleader = " "
 
-vim.keymap.set("n", "<Leader>e", ":Explore<CR>", { silent = true })
-
 vim.keymap.set("n", "]d", function()
   vim.diagnostic.jump { count = 1, float = true }
 end)

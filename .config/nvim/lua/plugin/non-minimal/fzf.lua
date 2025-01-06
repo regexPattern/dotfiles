@@ -4,7 +4,9 @@ return {
   cmd = "FzfLua",
   event = "LspAttach",
   config = function()
-    require("fzf-lua").setup({
+    local fzf = require("fzf-lua")
+
+    fzf.setup({
       winopts = {
         border = false,
         fullscreen = true,
@@ -40,6 +42,8 @@ return {
       fzf_opts = { ["--layout"] = "default" },
       file_icon_padding = " ",
     })
+
+    fzf.register_ui_select()
   end,
   keys = {
     { "<Leader>ff", ":FzfLua files<CR>" },

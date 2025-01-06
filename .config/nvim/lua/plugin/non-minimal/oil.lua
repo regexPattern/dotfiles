@@ -14,8 +14,9 @@ return {
       border = "single",
     },
     confirmation = { min_height = 1 },
+    keymaps = { ["Y"] = "actions.yank_entry" },
   },
   keys = {
-    { "<Leader>e", ":Oil<CR>", silent = true },
+    { "-", ":Oil<CR>", silent = true },
   },
 }
