@@ -1,17 +1,22 @@
-# TODO: https://github.com/fish-shell/fish-shell/blob/5918bca1eba861e3e8f69f055aac20e9cae1af3c/doc_src/cmds/fish_should_add_to_history.rst
+if not status --is-interactive
+    return
+end
 
 alias ls 'eza --group-directories-first'
-alias ll 'eza -a -l --group-directories-first'
-alias tree 'eza -a -T --git-ignore --group-directories-first'
+alias ll 'eza -al --group-directories-first'
+alias tree 'eza -aT --git-ignore --group-directories-first'
 
-fish_add_path $HOME/.local/share/bob/nvim-bin
+set -xg EDITOR nvim
+set -xg VISUAL $EDITOR
+
+set -xg BAT_THEME ansi
+
+if test (uname) = Darwin && test -x /opt/homebrew/bin/brew
+    /opt/homebrew/bin/brew shellenv | source
+end
+
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.local/share/bob/**/bin
 fish_add_path (go env GOPATH)/bin
-fish_add_path /opt/homebrew/bin
-fish_add_path /opt/homebrew/opt/rustup/bin
-
-set --export --global nvm_default_version lts
-set --export --global EDITOR 'env NVIM_MINIMAL=1 nvim'
-
-set --export --global BAT_THEME ansi
 
 zoxide init fish | source

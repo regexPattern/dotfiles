@@ -19,3 +19,4 @@ vim.opt.shiftwidth = vim.o.tabstop
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.completeopt = "menu,menuone"
+vim.opt.winborder = "single"

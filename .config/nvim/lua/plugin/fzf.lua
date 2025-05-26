@@ -52,7 +52,7 @@ return {
       "<Leader>fe",
       function()
         vim.ui.input({ prompt = "Extension: " }, function(input)
-          -- TODO: error handle this properly
+          -- TODO: handle errors properly
           require("fzf-lua").files({ fd_opts = "-e " .. input })
         end)
       end,

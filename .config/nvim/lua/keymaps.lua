@@ -1,17 +1,7 @@
-vim.g.mapleader = " "
-
-vim.keymap.set("n", "]d", function()
-  vim.diagnostic.jump { count = 1, float = true }
-end)
-
-vim.keymap.set("n", "[d", function()
-  vim.diagnostic.jump { count = -1, float = true }
-end)
-
-vim.keymap.set("n", "<C-Right>", ":vertical resize +5<CR>", { silent = true })
-vim.keymap.set("n", "<C-Left>", ":vertical resize -5<CR>", { silent = true })
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Right>", ":vert res +5<CR>", { silent = true })
+vim.keymap.set("n", "<C-Left>", ":vert res -5<CR>", { silent = true })
+vim.keymap.set("n", "<C-Up>", ":res +2<CR>", { silent = true })
+vim.keymap.set("n", "<C-Down>", ":res -2<CR>", { silent = true })
 
 vim.keymap.set("n", "<C-j>", function()
   if not vim.tbl_isempty(vim.fn.getqflist()) then
