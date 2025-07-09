@@ -1,8 +1,8 @@
 return {
   "ibhagwan/fzf-lua",
   dependencies = { "mini.icons" },
-  cmd = "FzfLua",
-  event = "LspAttach",
+  cmd = { "FzfLua" },
+  event = { "LspAttach" },
   config = function()
     local fzf = require("fzf-lua")
 
@@ -10,9 +10,7 @@ return {
       winopts = {
         border = false,
         fullscreen = true,
-        preview = {
-          hidden = "hidden",
-        },
+        preview = { hidden = "hidden" },
       },
       keymap = {
         fzf = {
@@ -23,15 +21,14 @@ return {
       },
       defaults = {
         file_icons = "mini",
+        hidden = true,
       },
       files = {
         actions = {
-          ["ctrl-g"] = { require("fzf-lua.actions").toggle_ignore },
           ["ctrl-d"] = function(selected, opts)
             local path_utils = require("fzf-lua.path")
             local file_path = path_utils.entry_to_file(selected[1]).path
             local dir_path = path_utils.join({
-              ---@diagnostic disable-next-line: undefined-field
               opts.cwd or (vim.uv or vim.loop).cwd(),
               vim.fn.fnamemodify(file_path, ":h"),
             })
@@ -40,27 +37,51 @@ return {
         },
       },
       fzf_opts = { ["--layout"] = "default" },
-      file_icon_padding = " ",
     })
 
     fzf.register_ui_select()
   end,
   keys = {
-    { "<Leader>ff", ":FzfLua files<CR>" },
-    { "<Leader>fb", ":FzfLua buffers<CR>" },
+    {
+      "<Leader>ff",
+      function()
+        require("fzf-lua").files()
+      end,
+    },
     {
       "<Leader>fe",
       function()
-        vim.ui.input({ prompt = "Extension: " }, function(input)
-          -- TODO: handle errors properly
-          require("fzf-lua").files({ fd_opts = "-e " .. input })
+        vim.ui.input({ prompt = "Extension❯ " }, function(e)
+          require("fzf-lua").files({ fd_opts = "--extension " .. e })
         end)
       end,
     },
-    { "<Leader>fg", ":FzfLua grep<CR>" },
-    { "<Leader>fd", ":FzfLua files fd_opts=--hidden\\ --type\\ d<CR>" },
-    { "<Leader>nv", ":FzfLua files cwd=" .. vim.fn.stdpath("config") .. "<CR>" },
-    { "<Leader>fr", ":FzfLua lsp_references<CR>" },
-    { "=z", ":FzfLua spell_suggest<CR>" },
+    {
+      "<Leader>fg",
+      function()
+        require("fzf-lua").live_grep()
+      end,
+    },
+    {
+      "<Leader>fd",
+      function()
+        require("fzf-lua").files({
+          prompt = "Directories❯ ",
+          fd_opts = "--type directory",
+        })
+      end,
+    },
+    {
+      "<Leader>nv",
+      function()
+        require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+      end,
+    },
+    {
+      "=z",
+      function()
+        require("fzf-lua").spell_suggest()
+      end,
+    },
   },
 }

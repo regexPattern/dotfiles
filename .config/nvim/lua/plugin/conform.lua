@@ -3,11 +3,10 @@ return {
   event = { "BufWritePre" },
   cmd = { "ConformInfo" },
   config = function()
-    -- Re-use formatters for the given filetypes.
-    local function common_fmtrs(fts, fmtrs)
+    local function common_fmts(fts, fmts)
       local conform_setup = {}
       for _, ft in ipairs(fts) do
-        conform_setup[ft] = fmtrs
+        conform_setup[ft] = fmts
       end
       return conform_setup
     end
@@ -16,15 +15,13 @@ return {
       formatters_by_ft = vim.tbl_extend(
         "force",
         {
+          nix = { "alejandra" },
           fish = { "fish_indent" },
-          go = {
-            "gofmt",
-            "goimports",
-          },
+          go = { "golangci-lint" },
           lua = { "stylua" },
           sql = { "pg_format" },
         },
-        common_fmtrs({
+        common_fmts({
           "css",
           "html",
           "javascript",
@@ -33,6 +30,7 @@ return {
           "svelte",
           "typescript",
           "typescriptreact",
+          "markdown",
         }, { "prettierd" })
       ),
       default_format_opts = {

@@ -9,7 +9,6 @@ return {
         return
       end
     end
-
     client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
       runtime = {
         version = "LuaJIT",

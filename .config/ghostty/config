@@ -8,12 +8,14 @@ window-width = 999
 window-padding-x = 12
 window-padding-y = 12
 
-# background-opacity = 0.95
-# background-blur = 128
+background-opacity = 0.90
+background-blur = 64
 
 macos-icon = custom-style
 macos-icon-frame = plastic
+macos-titlebar-style = tabs
 
 theme = light:Apple System Colors Light,dark:Ghostty Default StyleDark
 
 shell-integration-features = no-cursor
+keybind = shift+enter=text:\n
