@@ -1,24 +1,19 @@
 function Statusline_bufname()
   if vim.bo.filetype == "oil" then
-    return require("oil").get_current_dir(nil)
+    return require("oil").get_current_dir()
   end
-  local output
+
   local bufname = vim.fn.bufname("%")
   if vim.bo.buftype == "" and bufname ~= "" then
-    output = vim.fn.expand("%:.")
-  else
-    output = bufname == "" and "[No Name]" or vim.fn.expand("%:t")
+    return vim.fn.expand("%:.")
   end
-  return output
+
+  return bufname == "" and "[No Name]" or vim.fn.expand("%:t")
 end
 
 function Statusline_rec_status()
-  local output = ""
   local reg = vim.fn.reg_recording()
-  if reg ~= "" then
-    output = "recording @" .. reg .. "%="
-  end
-  return output
+  return reg ~= "" and "recording @" .. reg .. "%=" or ""
 end
 
 ---@diagnostic disable: undefined-field
