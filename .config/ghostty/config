@@ -1,21 +1,22 @@
+# Font
 font-family = Iosevka Custom
 font-size = 18
-adjust-cell-height = 4
+adjust-cell-height = 8
 font-thicken = true
 
-window-height = 999
-window-width = 999
+# Window
 window-padding-x = 12
 window-padding-y = 12
+maximize = true
 
+# Appearance
+theme = light:BlueDolphin,dark:catppuccin-macchiato
 background-opacity = 0.95
-background-blur = 64
-
-macos-icon = custom-style
-macos-icon-frame = plastic
+background-blur = true
 macos-titlebar-style = tabs
 
-theme = light:Github-Light-Default,dark:Ghostty Default StyleDark
-
-shell-integration-features = no-cursor
+# Keybindings
 keybind = shift+enter=text:\n
+
+# Shell integration
+shell-integration-features = no-cursor

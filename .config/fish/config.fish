@@ -10,10 +10,12 @@ if test (uname) = Darwin && test -x /opt/homebrew/bin/brew
 end
 
 fish_add_path $HOME/.local/bin
-fish_add_path $HOME/.local/share/bob/**/bin
+fish_add_path $HOME/.local/share/bob/nvim-bin
 fish_add_path $HOME/.cargo/bin
 
 direnv hook fish | source
 zoxide init fish | source
 
-alias claude '$HOME/.claude/local/claude'
+set -a MANPATH /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/share/man
+
+fenv source $HOME/.nix-profile/etc/profile.d/hm-session-vars.sh
