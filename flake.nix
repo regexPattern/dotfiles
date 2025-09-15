@@ -13,27 +13,45 @@
     home-manager,
     ...
   }: let
-    system = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system};
-  in {
-    homeConfigurations."regexpattern" = home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
-
-      modules = [./home.nix];
-
-      extraSpecialArgs = {
-        inherit (inputs) neovim-nightly-overlay;
+    username = "regexpattern";
+    hosts = {
+      "carlos-macbook-pro" = "aarch64-darwin";
+      "carlos-inspiron" = "x86_64-linux";
+    };
+    systems = builtins.attrValues hosts;
+    mkHome = host: system:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.${system};
+        modules = [./home.nix];
+        extraSpecialArgs = {
+          inherit (inputs) neovim-nightly-overlay;
+          inherit username host system;
+        };
       };
-    };
+    homeCfgPairs = builtins.map (
+      host: {
+        name = "${username}@${host}";
+        value = mkHome host hosts.${host};
+      }
+    ) (builtins.attrNames hosts);
+  in {
+    homeConfigurations = builtins.listToAttrs homeCfgPairs;
 
-    formatter.${system} = nixpkgs.legacyPackages.${system}.alejandra;
+    formatter = nixpkgs.lib.genAttrs systems (
+      system:
+        nixpkgs.legacyPackages.${system}.alejandra
+    );
 
-    devShells.${system}.default = pkgs.mkShell {
-      packages = with pkgs; [
-        alejandra
-        lua-language-server
-        stylua
-      ];
-    };
+    devShells = nixpkgs.lib.genAttrs systems (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+    in {
+      default = pkgs.mkShell {
+        packages = with pkgs; [
+          alejandra
+          lua-language-server
+          stylua
+        ];
+      };
+    });
   };
 }
