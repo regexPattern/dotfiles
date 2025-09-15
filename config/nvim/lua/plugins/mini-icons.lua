@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/echasnovski/mini.nvim" }, { confirm = false })
+vim.pack.add({ "https://github.com/echasnovski/mini.icons" }, { confirm = false })
 
 return {
   "mini.icons",

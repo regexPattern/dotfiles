@@ -1,9 +1,0 @@
-[user]
-	name = Carlos Castillo
-	email = 47466248+regexPattern@users.noreply.github.com
-
-[init]
-	defaultBranch = main
-
-[pull]
-	rebase = true
