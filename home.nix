@@ -1,35 +1,31 @@
 {
-  username,
   config,
   pkgs,
   neovim-nightly-overlay,
+  username,
+  host,
   ...
 }: let
-  lib = pkgs.lib;
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
   homeDir =
     if isDarwin
     then "/Users"
     else "/home";
-  configDir = ./config;
+  configsDir = ./configs;
 in rec {
   home.username = username;
   home.homeDirectory = "/${homeDir}/${username}";
   home.stateVersion = "25.05";
 
-  home.packages = [];
-
-  home.sessionVariables = rec {
-    EDITOR = "nvim";
-    VISUAL = EDITOR;
-  };
-
   home.sessionPath = [
     "~/.nix-profile/bin"
     "/nix/var/nix/profiles/default/bin"
   ];
-
+  home.sessionVariables = rec {
+    EDITOR = "nvim";
+    VISUAL = EDITOR;
+  };
   home.shellAliases = {
     ls = "eza --group-directories-first";
     ll = "eza -al --group-directories-first";
@@ -37,56 +33,79 @@ in rec {
   };
 
   xdg.configFile = builtins.mapAttrs (entry: type: {
-    source = "${configDir}/${entry}";
+    source = "${configsDir}/${entry}";
     recursive = type == "directory";
-  }) (builtins.readDir configDir);
+  }) (builtins.readDir configsDir);
 
   programs.home-manager.enable = true;
 
-  programs.neovim = {
-    enable = true;
-    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+  programs = {
+    bat.enable = true;
+    eza.enable = true;
+    fd.enable = true;
+    fzf.enable = true;
+    ripgrep.enable = true;
+    zoxide.enable = true;
   };
 
   programs.fish = {
     enable = true;
   };
 
-  programs.ghostty = {
+  programs.ghostty =
+    if isDarwin
+    then {
+      enable = true;
+      package = null;
+      settings = {
+        font-family = "Iosevka";
+        font-size = 18;
+        adjust-cell-height = 8;
+        font-thicken = true;
+        window-padding-x = 12;
+        window-padding-y = 12;
+        maximize = true;
+        shell-integration-features = "no-cursor";
+        macos-titlebar-style = "tabs";
+      };
+    }
+    else {};
+
+  programs.neovim = {
     enable = true;
-    package = null;
-    settings = {
-      font-family = "Iosevka";
-      font-size = 18;
-      adjust-cell-height = 8;
-      font-thicken = true;
-      window-padding-x = 12;
-      window-padding-y = 12;
-      maximize = true;
-      shell-integration-features = "no-cursor";
-      macos-titlebar-style = "tabs";
-    };
+    package = neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
-  programs.codex.enable = true;
+  programs.codex = {
+    enable = true;
+    settings.approval_policy = "untrusted";
+  };
 
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
-      "github.com" = {
-        hostname = "github.com";
-        user = "git";
-        identityFile = ["~/.ssh/github"];
-        identitiesOnly = true;
-      };
-      "carlos-inspiron" = {
-        hostname = "carlos-inspiron";
-        user = "regexpattern";
-        identityFile = ["~/.ssh/carlos-inspiron"];
-        identitiesOnly = true;
-      };
-    };
+    matchBlocks =
+      {
+        "github.com" = {
+          user = "git";
+          identityFile = ["~/.ssh/github"];
+          identitiesOnly = true;
+        };
+      }
+      // (
+        if isDarwin
+        then {
+          "carlos-inspiron*" = {
+            identityFile = ["~/.ssh/carlos-inspiron"];
+            identitiesOnly = true;
+          };
+          "carlos-raspberry-pi*" = {
+            identityFile = ["~/.ssh/carlos-raspberry-pi"];
+            identitiesOnly = true;
+          };
+        }
+        else {}
+      );
   };
 
   programs.direnv = {
@@ -95,20 +114,9 @@ in rec {
     nix-direnv.enable = true;
   };
 
-  programs = {
-    bat.enable = true;
-    eza.enable = true;
-    fzf.enable = true;
-    ripgrep.enable = true;
-    fd.enable = true;
-    zoxide.enable = true;
-  };
-
   programs.gh = {
     enable = true;
-    settings = {
-      git_protocol = "ssh";
-    };
+    settings.git_protocol = "ssh";
   };
 
   programs.git = {
@@ -123,9 +131,13 @@ in rec {
     settings = {
       logo = {
         source =
-          if isDarwin
-          then "macos_small"
-          else "linux_small";
+          {
+            "carlos-macbook-pro" = "macos_small";
+            "carlos-inspiron" = "ubuntu_small";
+            "carlos-rapsberry-pi" = "raspbian_small";
+          }.${
+            host
+          };
         padding = {
           top = 1;
           left = 1;

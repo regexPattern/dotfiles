@@ -17,6 +17,7 @@
     hosts = {
       "carlos-macbook-pro" = "aarch64-darwin";
       "carlos-inspiron" = "x86_64-linux";
+      "carlos-rapsberry-pi" = "aarch64-linux";
     };
     systems = builtins.attrValues hosts;
     mkHome = host: system:
