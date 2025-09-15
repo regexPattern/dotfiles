@@ -54,7 +54,7 @@ in rec {
 
   programs.ghostty = {
     enable = true;
-    package = pkgs.ghostty-bin;
+    package = null;
     settings = {
       font-family = "Iosevka";
       font-size = 18;
