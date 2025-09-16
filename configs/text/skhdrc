@@ -7,7 +7,7 @@ rcmd - 6 : yabai -m space --switch 6
 rcmd - 7 : yabai -m space --switch 7
 rcmd - 8 : yabai -m space --switch 8
 rcmd - 9 : yabai -m space --switch 9
-# rcmd - 0 : yabai -m space --switch recent
+rcmd - 0 : yabai -m space --switch recent
 
 rcmd + shift - 1 : yabai -m window --space 1
 rcmd + shift - 2 : yabai -m window --space 2

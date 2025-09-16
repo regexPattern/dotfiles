@@ -12,7 +12,6 @@
     if isDarwin
     then "/Users"
     else "/home";
-  configsDir = ./configs;
 in rec {
   home.username = username;
   home.homeDirectory = "/${homeDir}/${username}";
@@ -31,11 +30,6 @@ in rec {
     ll = "eza -al --group-directories-first";
     tree = "eza -aT --git-ignore --group-directories-first";
   };
-
-  xdg.configFile = builtins.mapAttrs (entry: type: {
-    source = "${configsDir}/${entry}";
-    recursive = type == "directory";
-  }) (builtins.readDir configsDir);
 
   programs.home-manager.enable = true;
 
@@ -128,64 +122,19 @@ in rec {
 
   programs.fastfetch = {
     enable = true;
-    settings = {
-      logo = {
-        source =
-          {
-            "carlos-macbook-pro" = "macos_small";
-            "carlos-inspiron" = "ubuntu_small";
-            "carlos-rapsberry-pi" = "raspbian_small";
-          }.${
-            host
-          };
-        padding = {
-          top = 1;
-          left = 1;
-        };
-      };
-      modules = [
-        {
-          type = "host";
-          key = "HOST";
-        }
-        {
-          type = "cpu";
-          key = "CPU";
-        }
-        {
-          type = "gpu";
-          key = "GPU";
-        }
-        {
-          type = "memory";
-          key = "MEMORY";
-        }
-        {
-          type = "swap";
-          key = "SWAP";
-        }
-        {
-          type = "disk";
-          key = "DISK";
-          folders = "/";
-        }
-        {
-          type = "os";
-          key = "OS";
-        }
-        {
-          type = "packages";
-          key = "PACKAGES";
-        }
-        {
-          type = "terminal";
-          key = "TERMINAL";
-        }
-        {
-          type = "shell";
-          key = "SHELL";
-        }
-      ];
+    settings = import ./configs/nix/fastfetch.nix host;
+  };
+
+  xdg.configFile = {
+    "nvim" = {
+      source = ./configs/text/nvim;
+      recursive = true;
     };
+    "yabai/yabairc".source = ./configs/text/yabairc;
+  };
+
+  services.skhd = {
+    enable = true;
+    config = "${builtins.readFile ./configs/text/skhdrc}";
   };
 }
