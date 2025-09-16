@@ -7,7 +7,7 @@
       {
         "carlos-macbook-pro" = "macos_small";
         "carlos-inspiron" = "linux_small";
-        "carlos-rapsberry-pi" = "raspbian_small";
+        "carlos-raspberry-pi" = "raspbian_small";
       }.${
         host
       };
