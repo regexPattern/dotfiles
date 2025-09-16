@@ -1,4 +1,7 @@
-host: {
+{
+  host,
+  isLinux,
+}: rec {
   logo = {
     source =
       {
@@ -10,39 +13,41 @@ host: {
       };
     padding.left = 1;
   };
-  modules = [
-    {
-      type = "host";
-      key = "HOST";
-    }
-    {
-      type = "cpu";
-      key = "CPU";
-    }
-    {
-      type = "gpu";
-      key = "GPU";
-    }
-    {
-      type = "memory";
-      key = "MEMORY";
-    }
-    {
-      type = "disk";
-      key = "DISK";
-      folders = "/";
-    }
-    {
-      type = "os";
-      key = "OS";
-    }
-    {
-      type = "packages";
-      key = "PACKAGES";
-    }
-    {
-      type = "shell";
-      key = "SHELL";
-    }
-  ];
+  modules =
+    (
+      if logo.source == "raspbian_small"
+      then [{type = "break";}]
+      else []
+    )
+    ++ [
+      {
+        type = "host";
+      }
+      {
+        type = "cpu";
+      }
+      {
+        type = "memory";
+      }
+      {
+        type = "disk";
+        folders = "/";
+      }
+      {
+        type = "os";
+      }
+    ]
+    ++ (
+      if isLinux
+      then [{type = "localip";}]
+      else []
+    )
+    ++ [
+      {
+        type = "packages";
+      }
+      {
+        type = "uptime";
+      }
+    ];
 }

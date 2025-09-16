@@ -122,7 +122,7 @@ in rec {
 
   programs.fastfetch = {
     enable = true;
-    settings = import ./configs/nix/fastfetch.nix host;
+    settings = import ./configs/nix/fastfetch.nix {inherit host isLinux;};
   };
 
   xdg.configFile = {
