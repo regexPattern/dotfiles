@@ -133,8 +133,11 @@ in rec {
     "yabai/yabairc".source = ./configs/text/yabairc;
   };
 
-  services.skhd = {
-    enable = true;
-    config = "${builtins.readFile ./configs/text/skhdrc}";
-  };
+  services.skhd =
+    if isDarwin
+    then {
+      enable = true;
+      config = "${builtins.readFile ./configs/text/skhdrc}";
+    }
+    else {};
 }
