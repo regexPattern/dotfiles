@@ -19,5 +19,7 @@ vim.api.nvim_create_autocmd("OptionSet", {
     vim.cmd([[hi RenderMarkdownH4Bg gui=reverse]])
     vim.cmd([[hi RenderMarkdownH5Bg gui=reverse]])
     vim.cmd([[hi RenderMarkdownH6Bg gui=reverse]])
+
+    vim.cmd([[hi LineNr guifg=NvimDarkCyan]])
   end,
 })

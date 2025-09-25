@@ -24,12 +24,15 @@ in rec {
   home.sessionVariables = rec {
     EDITOR = "nvim";
     VISUAL = EDITOR;
+    # LS_COLORS = "di=1;36";
   };
   home.shellAliases = {
     ls = "eza --group-directories-first";
     ll = "eza -al --group-directories-first";
     tree = "eza -aT --git-ignore --group-directories-first";
   };
+
+  home.packages = with pkgs; [imagemagick qemu];
 
   programs.home-manager.enable = true;
 
@@ -58,9 +61,37 @@ in rec {
         font-thicken = true;
         window-padding-x = 12;
         window-padding-y = 12;
+        background-opacity = 0.85;
+        background-blur = 64;
+        theme = "Blue Dolphin";
         maximize = true;
         shell-integration-features = "no-cursor";
         macos-titlebar-style = "tabs";
+
+        palette = [
+          "0=#292d3e"
+          "1=#ff8288"
+          "2=#b4e88d"
+          "3=#f4d69f"
+          "4=#82aaff"
+          "5=#e9c1ff"
+          "6=#89ebff"
+          "7=#d0d0d0"
+          "8=#434758"
+          "9=#ff8b92"
+          "10=#ddffa7"
+          "11=#ffe585"
+          "12=#9cc4ff"
+          "13=#ddb0f6"
+          "14=#a3f7ff"
+          "15=#ffffff"
+        ];
+        background = "#5ea1b5";
+        foreground = "#c5f2ff";
+        cursor-color = "#ffcc00";
+        cursor-text = "#292d3e";
+        selection-background = "#c5f2ff";
+        selection-foreground = "#5ea1b5";
       };
     }
     else {};
@@ -68,11 +99,29 @@ in rec {
   programs.neovim = {
     enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+    plugins = with pkgs.vimPlugins; [
+      nvim-treesitter-parsers.c
+      nvim-treesitter-parsers.lua
+      nvim-treesitter-parsers.nix
+      nvim-treesitter-parsers.rust
+    ];
   };
 
   programs.codex = {
     enable = true;
-    settings.approval_policy = "untrusted";
+    settings = {
+      approval_policy = "untrusted";
+      model = "gpt-5-codex";
+      model_reasoning_effort = "medium";
+    };
+  };
+
+  programs.opencode = {
+    enable = true;
+    settings = {
+      theme = "system";
+      autoshare = false;
+    };
   };
 
   programs.ssh = {
@@ -130,14 +179,7 @@ in rec {
       source = ./configs/text/nvim;
       recursive = true;
     };
+    "skhd/skhdrc".source = ./configs/text/skhdrc;
     "yabai/yabairc".source = ./configs/text/yabairc;
   };
-
-  services.skhd =
-    if isDarwin
-    then {
-      enable = true;
-      config = "${builtins.readFile ./configs/text/skhdrc}";
-    }
-    else {};
 }

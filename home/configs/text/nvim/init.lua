@@ -31,5 +31,19 @@ vim.keymap.set("n", "<C-Left>", ":vert res -5<CR>", { silent = true })
 vim.keymap.set("n", "<C-Up>", ":res +2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Down>", ":res -2<CR>", { silent = true })
 
-vim.pack.add({ "https://github.com/nvim-neorocks/lz.n" }, { confirm = false })
-require("lz.n").load("plugins")
+vim.pack.add({
+  "https://github.com/b0o/SchemaStore.nvim",
+  "https://github.com/brenoprata10/nvim-highlight-colors",
+  "https://github.com/echasnovski/mini.align",
+  "https://github.com/echasnovski/mini.icons",
+  "https://github.com/echasnovski/mini.surround",
+  "https://github.com/ibhagwan/fzf-lua",
+  "https://github.com/j-hui/fidget.nvim",
+  "https://github.com/neovim/nvim-lspconfig",
+  "https://github.com/stevearc/conform.nvim",
+  "https://github.com/stevearc/oil.nvim",
+  {
+    src = "https://github.com/nvim-treesitter/nvim-treesitter",
+    version = "main",
+  },
+}, { confirm = false })
