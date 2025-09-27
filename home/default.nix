@@ -24,7 +24,6 @@ in rec {
   home.sessionVariables = rec {
     EDITOR = "nvim";
     VISUAL = EDITOR;
-    # LS_COLORS = "di=1;36";
   };
   home.shellAliases = {
     ls = "eza --group-directories-first";
@@ -32,7 +31,7 @@ in rec {
     tree = "eza -aT --git-ignore --group-directories-first";
   };
 
-  home.packages = with pkgs; [tree-sitter imagemagick qemu];
+  home.packages = with pkgs; [imagemagick qemu];
 
   programs.home-manager.enable = true;
 
@@ -75,6 +74,7 @@ in rec {
   programs.neovim = {
     enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
+    extraPackages = with pkgs; [nodejs_24 tree-sitter];
   };
 
   programs.codex = {
@@ -143,6 +143,8 @@ in rec {
     enable = true;
     settings = import ./configs/nix/fastfetch.nix {inherit host isLinux;};
   };
+
+  programs.htop.enable = true;
 
   xdg.configFile = {
     "nvim" = {

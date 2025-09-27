@@ -32,6 +32,7 @@ vim.keymap.set("n", "<C-Up>", ":res +2<CR>", { silent = true })
 vim.keymap.set("n", "<C-Down>", ":res -2<CR>", { silent = true })
 
 vim.pack.add({
+  "https://github.com/Darazaki/indent-o-matic",
   "https://github.com/b0o/SchemaStore.nvim",
   "https://github.com/brenoprata10/nvim-highlight-colors",
   "https://github.com/echasnovski/mini.align",

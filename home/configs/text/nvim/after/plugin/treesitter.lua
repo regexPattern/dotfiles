@@ -23,3 +23,6 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
   end,
 })
+
+-- https://github.com/Darazaki/indent-o-matic
+require("indent-o-matic").setup({})
