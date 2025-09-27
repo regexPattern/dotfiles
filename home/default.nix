@@ -32,7 +32,7 @@ in rec {
     tree = "eza -aT --git-ignore --group-directories-first";
   };
 
-  home.packages = with pkgs; [imagemagick qemu];
+  home.packages = with pkgs; [tree-sitter imagemagick qemu];
 
   programs.home-manager.enable = true;
 
@@ -67,31 +67,7 @@ in rec {
         maximize = true;
         shell-integration-features = "no-cursor";
         macos-titlebar-style = "tabs";
-
-        palette = [
-          "0=#292d3e"
-          "1=#ff8288"
-          "2=#b4e88d"
-          "3=#f4d69f"
-          "4=#82aaff"
-          "5=#e9c1ff"
-          "6=#89ebff"
-          "7=#d0d0d0"
-          "8=#434758"
-          "9=#ff8b92"
-          "10=#ddffa7"
-          "11=#ffe585"
-          "12=#9cc4ff"
-          "13=#ddb0f6"
-          "14=#a3f7ff"
-          "15=#ffffff"
-        ];
-        background = "#5ea1b5";
-        foreground = "#c5f2ff";
-        cursor-color = "#ffcc00";
-        cursor-text = "#292d3e";
-        selection-background = "#c5f2ff";
-        selection-foreground = "#5ea1b5";
+        background = "#2a7e94";
       };
     }
     else {};
@@ -99,12 +75,6 @@ in rec {
   programs.neovim = {
     enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-    plugins = with pkgs.vimPlugins; [
-      nvim-treesitter-parsers.c
-      nvim-treesitter-parsers.lua
-      nvim-treesitter-parsers.nix
-      nvim-treesitter-parsers.rust
-    ];
   };
 
   programs.codex = {

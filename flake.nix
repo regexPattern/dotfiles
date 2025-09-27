@@ -5,7 +5,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay/93318bab5ce403a60a694ad1b6219760935553f7";
   };
 
   outputs = inputs @ {
