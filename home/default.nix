@@ -31,7 +31,7 @@ in rec {
     tree = "eza -aT --git-ignore --group-directories-first";
   };
 
-  home.packages = with pkgs; [imagemagick qemu];
+  home.packages = with pkgs; [imagemagick qemu tailscale];
 
   programs.home-manager.enable = true;
 
