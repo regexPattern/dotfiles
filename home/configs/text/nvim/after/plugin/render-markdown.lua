@@ -1,3 +1,21 @@
 require("render-markdown").setup({
-  completions = { lsp = { enabled = true } },
+  heading = {
+    width = "block",
+    left_pad = 1,
+    right_pad = 1,
+    icons = {},
+  },
+  code = {
+    border = "thin",
+    inline_pad = 1,
+    left_pad = 1,
+    language = false,
+    -- highlight_border = false,
+  },
+  bullet = {
+    enabled = false,
+  },
+  sign = {
+    enabled = false,
+  },
 })

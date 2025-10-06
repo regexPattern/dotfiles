@@ -25,13 +25,13 @@ in rec {
     EDITOR = "nvim";
     VISUAL = EDITOR;
   };
-  home.shellAliases = {
-    ls = "eza --group-directories-first";
-    ll = "eza -al --group-directories-first";
-    tree = "eza -aT --git-ignore --group-directories-first";
-  };
+  # home.shellAliases = {
+  #   ls = "eza --group-directories-first";
+  #   ll = "eza -al --group-directories-first";
+  #   tree = "eza -aT --git-ignore --group-directories-first";
+  # };
 
-  home.packages = with pkgs; [imagemagick qemu tailscale];
+  home.packages = with pkgs; [bun imagemagick qemu tailscale];
 
   programs.home-manager.enable = true;
 
@@ -47,6 +47,16 @@ in rec {
   programs.fish = {
     enable = true;
   };
+
+  programs.nushell = {
+    enable = true;
+    settings = {
+      show_banner = false;
+    };
+  };
+
+  programs.atuin.enable = true;
+  programs.carapace.enable = true;
 
   programs.ghostty =
     if isDarwin
@@ -74,7 +84,7 @@ in rec {
   programs.neovim = {
     enable = true;
     package = neovim-nightly-overlay.packages.${pkgs.system}.default;
-    extraPackages = with pkgs; [nodejs_24 tree-sitter];
+    extraPackages = with pkgs; [clang nodejs_24 tree-sitter];
   };
 
   programs.codex = {
@@ -83,6 +93,11 @@ in rec {
       approval_policy = "untrusted";
       model = "gpt-5-codex";
       model_reasoning_effort = "medium";
+      mcp_servers.context7 = {
+        args = ["--bun" "@upstash/context7-mcp" "--api-key" "ctx7sk-9131371e-c12a-48af-b45e-15bf0fe55abd"];
+        command = "bunx";
+      };
+      tui.notifications = true;
     };
   };
 
@@ -123,7 +138,7 @@ in rec {
 
   programs.direnv = {
     enable = true;
-    silent = true;
+    silent = false;
     nix-direnv.enable = true;
   };
 
