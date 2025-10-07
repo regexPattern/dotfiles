@@ -25,11 +25,11 @@ in rec {
     EDITOR = "nvim";
     VISUAL = EDITOR;
   };
-  # home.shellAliases = {
-  #   ls = "eza --group-directories-first";
-  #   ll = "eza -al --group-directories-first";
-  #   tree = "eza -aT --git-ignore --group-directories-first";
-  # };
+  home.shellAliases = {
+    ls = "eza --group-directories-first";
+    ll = "eza -al --group-directories-first";
+    tree = "eza -aT --git-ignore --group-directories-first";
+  };
 
   home.packages = with pkgs; [bun imagemagick qemu tailscale];
 
@@ -48,15 +48,16 @@ in rec {
     enable = true;
   };
 
-  programs.nushell = {
-    enable = true;
-    settings = {
-      show_banner = false;
-    };
-  };
-
-  programs.atuin.enable = true;
-  programs.carapace.enable = true;
+  # programs.nushell = {
+  #   enable = true;
+  #   environmentVariables = home.sessionVariables;
+  #   settings = {
+  #     show_banner = false;
+  #   };
+  # };
+  #
+  # programs.atuin.enable = true;
+  # programs.carapace.enable = true;
 
   programs.ghostty =
     if isDarwin

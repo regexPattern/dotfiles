@@ -18,4 +18,5 @@ require("render-markdown").setup({
   sign = {
     enabled = false,
   },
+  overrides = { buftype = { nofile = { enabled = false } } },
 })

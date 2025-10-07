@@ -23,7 +23,7 @@
     mkHome = host: system:
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
-        modules = [./home];
+        modules = [./modules/home-manager];
         extraSpecialArgs = {
           inherit (inputs) neovim-nightly-overlay;
           inherit username host system;
