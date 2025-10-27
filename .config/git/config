@@ -1,0 +1,14 @@
+[user]
+	name = Carlos Castillo
+    email = 47466248+regexPattern@users.noreply.github.com
+
+[init]
+	defaultBranch = main
+
+[pager]
+	diff = riff
+	show = riff
+	log = riff
+
+[interactive]
+	diffFilter = riff --color=on

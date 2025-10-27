@@ -1,0 +1,40 @@
+{
+  "plugins": {
+    "SchemaStore.nvim": {
+      "rev": "e71cc06"
+    },
+    "conform.nvim": {
+      "rev": "fbcb4fa"
+    },
+    "distant.nvim": {
+      "rev": "67d6b06",
+      "src": "https://github.com/chipsenkbeil/distant.nvim"
+    },
+    "fidget.nvim": [],
+    "fzf-lua": {
+      "rev": "d45ce94"
+    },
+    "indent-o-matic": [],
+    "mini.align": {
+      "rev": "f42eeb7"
+    },
+    "mini.icons": [],
+    "mini.surround": {
+      "rev": "444e155"
+    },
+    "nvim-highlight-colors": [],
+    "nvim-lspconfig": {
+      "rev": "ac98db2"
+    },
+    "nvim-treesitter": {
+      "rev": "71bf1665",
+      "version": "'main'"
+    },
+    "oil.nvim": {
+      "rev": "7194872"
+    },
+    "render-markdown.nvim": {
+      "rev": "475d3ad"
+    }
+  }
+}
