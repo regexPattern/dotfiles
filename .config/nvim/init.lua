@@ -1,77 +1,38 @@
-vim.opt.autoindent = true
-vim.opt.smartindent = true
-vim.opt.linebreak = true
+-- regexPattern's Neovim 0.12 config
+-- Greatly inspired (completely stolen) from: https://github.com/nvim-mini/MiniMax/tree/70ade6783c9d45d5c81eab5a2d3ff3a62e02066e/configs/nvim-0.12
 
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.wrap = false
+_G.Config = {}
 
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+vim.pack.add({ "https://github.com/nvim-mini/mini.misc" })
 
-vim.opt.undofile = true
-vim.opt.swapfile = false
+local misc = require("mini.misc")
+Config.now = function(f)
+  misc.safely("now", f)
+end
+Config.later = function(f)
+  misc.safely("later", f)
+end
+Config.now_if_args = vim.fn.argc(-1) > 0 and Config.now or Config.later
+Config.on_event = function(ev, f)
+  misc.safely("event:" .. ev, f)
+end
 
-vim.opt.termguicolors = true
-vim.opt.scrolloff = 5
+local gr = vim.api.nvim_create_augroup("custom-config", {})
+Config.new_autocmd = function(event, pattern, callback)
+  local opts = { group = gr, pattern = pattern, callback = callback }
+  vim.api.nvim_create_autocmd(event, opts)
+end
 
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = vim.o.tabstop
-
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-
-vim.opt.completeopt = "menuone,noselect,fuzzy,nosort"
-vim.opt.winborder = "single"
-
-vim.g.mapleader = " "
-
-vim.keymap.set("n", "-", ":Explore<CR>", { silent = true })
-vim.keymap.set("n", "<C-Right>", ":vert res +5<CR>", { silent = true })
-vim.keymap.set("n", "<C-Left>", ":vert res -5<CR>", { silent = true })
-vim.keymap.set("n", "<C-Up>", ":res +2<CR>", { silent = true })
-vim.keymap.set("n", "<C-Down>", ":res -2<CR>", { silent = true })
-
-vim.pack.add({
-  "https://github.com/Darazaki/indent-o-matic",
-  "https://github.com/b0o/SchemaStore.nvim",
-  "https://github.com/brenoprata10/nvim-highlight-colors",
-  "https://github.com/echasnovski/mini.align",
-  "https://github.com/echasnovski/mini.icons",
-  "https://github.com/echasnovski/mini.surround",
-  "https://github.com/ibhagwan/fzf-lua",
-  "https://github.com/j-hui/fidget.nvim",
-  "https://github.com/neovim/nvim-lspconfig",
-  "https://github.com/stevearc/conform.nvim",
-  "https://github.com/stevearc/oil.nvim",
-  {
-    src = "https://github.com/nvim-treesitter/nvim-treesitter",
-    version = "main",
-  },
-})
-
-vim.cmd([[hi Normal guibg=NONE]])
-
-vim.api.nvim_create_autocmd("OptionSet", {
-  pattern = "background",
-  callback = function()
-    vim.cmd([[colo default]])
-
-    vim.cmd([[hi Normal guibg=NONE]])
-    vim.cmd([[hi NormalFloat guibg=NONE]])
-
-    vim.cmd([[hi QuickFixLine gui=underline]])
-
-    vim.cmd([[hi DiagnosticUnderlineError gui=undercurl]])
-    vim.cmd([[hi DiagnosticUnderlineHint gui=undercurl]])
-    vim.cmd([[hi DiagnosticUnderlineInfo gui=undercurl]])
-    vim.cmd([[hi DiagnosticUnderlineWarn gui=undercurl]])
-
-    vim.cmd([[hi RenderMarkdownH1Bg gui=reverse]])
-    vim.cmd([[hi RenderMarkdownH2Bg gui=reverse]])
-    vim.cmd([[hi RenderMarkdownH3Bg gui=reverse]])
-    vim.cmd([[hi RenderMarkdownH4Bg gui=reverse]])
-    vim.cmd([[hi RenderMarkdownH5Bg gui=reverse]])
-    vim.cmd([[hi RenderMarkdownH6Bg gui=reverse]])
-  end,
-})
+Config.on_packchanged = function(plugin_name, kinds, callback)
+  local f = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+    if not (name == plugin_name and vim.tbl_contains(kinds, kind)) then
+      return
+    end
+    if not ev.data.active then
+      vim.cmd.packadd(plugin_name)
+    end
+    callback()
+  end
+  Config.new_autocmd("PackChanged", "*", f)
+end
