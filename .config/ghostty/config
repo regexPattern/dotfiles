@@ -1,12 +1,11 @@
-font-family = Iosevka
-font-size = 18
+font-size = 16
 adjust-cell-height = 8
 font-thicken = true
 window-padding-x = 12
 window-padding-y = 12
-background-opacity = 0.75
+background-opacity = 0.80
 background-blur = 64
+unfocused-split-opacity = 0.50
 maximize = true
-shell-integration-features = no-cursor
 macos-titlebar-style = tabs
-keybind = shift+enter=text:\x1b\r
+theme = 0x96f
