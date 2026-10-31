@@ -1,0 +1,6 @@
+{
+  "private": true,
+  "dependencies": {
+    "open-quotes": "0.0.9"
+  }
+}

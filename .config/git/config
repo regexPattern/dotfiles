@@ -1,14 +1,19 @@
 [user]
-name = Carlos Castillo
-email = 47466248+regexPattern@users.noreply.github.com
+    name = Carlos Castillo
+    email = 47466248+regexPattern@users.noreply.github.com
 
 [init]
-defaultBranch = main
+    defaultBranch = main
 
-[pager]
-diff = riff
-show = riff
-log = riff
+[core]
+    pager = delta
 
 [interactive]
-diffFilter = riff --color=on
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    side-by-side = true
+
+[merge]
+    conflictStyle = zdiff3

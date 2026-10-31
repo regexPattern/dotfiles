@@ -1,11 +1,22 @@
+font-family = Paper Mono
 font-size = 16
-adjust-cell-height = 8
 font-thicken = true
+adjust-cell-height = 12
+
 window-padding-x = 12
 window-padding-y = 12
-background-opacity = 0.80
-background-blur = 64
-unfocused-split-opacity = 0.50
+
 maximize = true
-macos-titlebar-style = tabs
-theme = 0x96f
+theme = light:Adwaita,dark:Ghostty Dark Custom
+# theme = Ghostty Dark Custom
+
+macos-titlebar-style = native
+background-blur = 128
+background-opacity = 0.90
+
+keybind = super+j=jump_to_prompt:1
+keybind = super+k=jump_to_prompt:-1
+
+command = /bin/zsh -lc 'exec fish'
+
+auto-update = download

@@ -1,0 +1,49 @@
+/** Pi 1.4.x: inline prompt marker and borderless input, without changing the theme. */
+import { CustomEditor, type ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import { truncateToWidth, type TuiMouseEvent, type TuiMouseEventResult } from "@earendil-works/pi-tui";
+
+const BOTTOM_BORDER = "\x1b]pi-prompt-input-bottom\x07";
+
+export class PromptEditor extends CustomEditor {
+  private prefixWidth = 2;
+  private contentRows = 1;
+
+  protected override renderTopBorder(): string { return ""; }
+  protected override renderBottomBorder(): string { return BOTTOM_BORDER; }
+
+  override render(width: number): string[] {
+    // Reserve the prefix before wrapping, so cursor navigation uses the same width.
+    this.prefixWidth = Math.min(2, Math.max(0, width - 1));
+    // Pi's wrapper needs two text columns for wide graphemes; clip tiny views below.
+    const lines = super.render(Math.max(3, width - this.prefixWidth));
+    const bottom = lines.indexOf(BOTTOM_BORDER);
+    this.contentRows = bottom - 1;
+    const content = lines.slice(1, bottom);
+    const autocomplete = lines.slice(bottom + 1);
+    const indent = " ".repeat(this.prefixWidth);
+    return [
+      ...content.map((line, index) =>
+        (index === 0 ? this.borderColor("> ".slice(0, this.prefixWidth)) : indent) + line),
+      ...autocomplete.map(line => indent + line),
+    ].map(line => truncateToWidth(line, width, ""));
+  }
+
+  override handleMouse(event: TuiMouseEvent): TuiMouseEventResult | undefined {
+    // The base editor expects a top rule and, before completion, a bottom rule.
+    return super.handleMouse({
+      ...event,
+      x: Math.max(0, event.x - this.prefixWidth),
+      y: event.y + (event.y < this.contentRows ? 1 : 2),
+      width: Math.max(3, event.width - this.prefixWidth),
+      height: event.height + 2,
+    });
+  }
+}
+
+export default function (pi: ExtensionAPI) {
+  pi.on("session_start", (_event, ctx) => {
+    if (ctx.mode !== "tui") return;
+    ctx.ui.setEditorComponent((tui, theme, keybindings) =>
+      new PromptEditor(tui, theme, keybindings));
+  });
+}

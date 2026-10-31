@@ -1,0 +1,38 @@
+{
+  "lastChangelogVersion": "1.4.0",
+  "deviceId": "ed4e376d-f255-4270-a9f7-a1b8694467d9",
+  "defaultProvider": "openai",
+  "defaultModel": "gpt-6.1-sol",
+  "collapseChangelog": true,
+  "extensions": [
+    "-~/.pi/agent/extensions/transparent-ui.ts"
+  ],
+  "packages": [
+    "npm:@ff-labs/pi-fff",
+    "npm:pi-web-access",
+    "npm:pi-undo-redo",
+    "npm:@juicesharp/rpiv-ask-user-question",
+    "npm:@monotykamary/pi-tps",
+    "npm:pi-compaction-model",
+    "npm:billion-context",
+    "npm:@juicesharp/rpiv-todo"
+  ],
+  "tokenSpeed": {
+    "icon": "",
+    "displayColors": {},
+    "display": "tps",
+    "updateInterval": 500,
+    "countStrategy": "estimate",
+    "slidingWindow": 3000,
+    "endTpsBehavior": "average"
+  },
+  "compactionModel": {
+    "model": "opencode/deepseek-v4.1-flash",
+    "thinkingLevel": "medium"
+  },
+  "terminal": {
+    "showTerminalProgress": true
+  },
+  "hideThinkingBlock": true,
+  "fullscreenScrollbar": "hidden"
+}

@@ -1,0 +1,47 @@
+[bootstrap.packages]
+"brew:fish" = { os = "macos" }
+"brew:btop" = { os = "macos" }
+"brew:chafa" = { os = "macos" }
+"brew:exiftool" = { os = "macos" }
+"brew:ffmpeg" = { os = "macos" }
+"brew:imagemagick-full" = { os = "macos" }
+"brew:stow" = { os = "macos" }
+
+"brew-cask:1password-cli@beta" = { os = "macos" }
+"brew-cask:finetune" = { os = "macos" }
+"brew-cask:libreoffice" = { os = "macos" }
+"brew-cask:notunes" = { os = "macos" }
+"brew-cask:abue-ammar/tinycast/tinycast" = { os = "macos" }
+"brew-cask:wireshark-app" = { os = "macos" }
+"brew-cask:zulu" = { os = "macos" }
+"brew-cask:zulu@25" = { os = "macos" }
+
+[tools]
+"aqua:1password/cli" = { version = "v2.43.0-beta.02", os = ["linux"] }
+bat = "latest"
+bob = "latest"
+btop = { version = "latest", os = ["linux"] }
+bun = "latest"
+delta = "latest"
+direnv = "latest"
+doctl = "latest"
+eza = "latest"
+fastfetch = "latest"
+fd = "latest"
+fzf = "latest"
+gh = "latest"
+glab = "latest"
+hunk = "latest"
+jujutsu = "latest"
+kubectl = "latest"
+node = "26.12.0"
+onefetch = "latest"
+pi = "latest"
+pnpm = "latest"
+ripgrep = "latest"
+tree-sitter = "latest"
+zoxide = "latest"
+
+[env]
+EDITOR = "nvim"
+VISUAL = "nvim"

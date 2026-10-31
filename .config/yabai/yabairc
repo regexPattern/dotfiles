@@ -1,3 +1,8 @@
-yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
-sudo yabai --load-sa
-yabai -m config layout float
+#!/bin/sh
+
+YABAI=/opt/homebrew/bin/yabai
+
+"$YABAI" -m signal --add event=dock_did_restart action="sudo -n $YABAI --load-sa"
+sudo -n "$YABAI" --load-sa
+"$YABAI" -m config layout float
+"$YABAI" -m config mouse_follows_focus on
